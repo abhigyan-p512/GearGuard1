@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <!-- Actions -->
+        <record id="action_equipment_equipment" model="ir.actions.act_window">
+            <field name="name">Equipment</field>
+            <field name="res_model">equipment.equipment</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_equipment_category" model="ir.actions.act_window">
+            <field name="name">Equipment Categories</field>
+            <field name="res_model">equipment.category</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_maintenance_team" model="ir.actions.act_window">
+            <field name="name">Maintenance Teams</field>
+            <field name="res_model">maintenance.team</field>
+            <field name="view_mode">tree,form</field>
+        </record>
+
+        <record id="action_maintenance_request" model="ir.actions.act_window">
+            <field name="name">Maintenance Requests</field>
+            <field name="res_model">maintenance.request</field>
+            <field name="view_mode">kanban,tree,form,calendar</field>
+            <field name="context">{'search_default_group_by_stage': 1}</field>
+        </record>
+
+        <record id="action_maintenance_request_calendar" model="ir.actions.act_window">
+            <field name="name">Maintenance Calendar</field>
+            <field name="res_model">maintenance.request</field>
+            <field name="view_mode">calendar</field>
+            <field name="domain">[('request_type', '=', 'preventive')]</field>
+        </record>
+
+        <!-- Main Menu -->
+        <menuitem id="menu_gear_guard" name="GearGuard" sequence="10"/>
+
+        <!-- Equipment Menu -->
+        <menuitem id="menu_equipment" name="Equipment" parent="menu_gear_guard" sequence="1"/>
+        <menuitem id="menu_equipment_equipment" name="Equipment" parent="menu_equipment" action="action_equipment_equipment" sequence="1"/>
+        <menuitem id="menu_equipment_category" name="Categories" parent="menu_equipment" action="action_equipment_category" sequence="2"/>
+
+        <!-- Maintenance Menu -->
+        <menuitem id="menu_maintenance" name="Maintenance" parent="menu_gear_guard" sequence="2"/>
+        <menuitem id="menu_maintenance_team" name="Teams" parent="menu_maintenance" action="action_maintenance_team" sequence="1"/>
+        <menuitem id="menu_maintenance_request" name="Requests" parent="menu_maintenance" action="action_maintenance_request" sequence="2"/>
+        <menuitem id="menu_maintenance_calendar" name="Calendar" parent="menu_maintenance" action="action_maintenance_request_calendar" sequence="3"/>
+    </data>
+</odoo>
